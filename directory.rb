@@ -8,7 +8,7 @@ def input_students
   student_arr = []
 
   while !name.empty? do
-    student_arr << {name: name, cohort: :november}
+    student_arr << {name: name, cohort: :november }
     puts "Now we have #{student_arr.count} students"
     name = gets.chomp
   end
@@ -17,20 +17,18 @@ end
 
 # print header
 def print_header
-  puts "The Students of Makers Academy"
-  puts "-------------"
+  puts "The Students of Makers Academy".center(100)
+  puts "------------------------------".center(100)
 end
 
 #print student list
 def print(names)
-  # Excerise 1 - add number to start of student name
-  # Exercise 1 - modify program to only print names of students with a certain letter
-  names.each_with_index {|student, index| puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)" if student[:name].downcase. start_with?("a") }
+  names.each_with_index {|student, index| puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort).center(100)".center(100) }
 end
 
 #print footer
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students".center(100)
 end
 
 student_arr = input_students
