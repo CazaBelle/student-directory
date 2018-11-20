@@ -9,7 +9,8 @@ def input_students
     cohort = gets.chomp
     if cohort.empty?
       cohort = "november"
-    end
+    endq
+
     add_student(name, cohort)
     puts "Now we have #{@student_arr.count} students"
     name = gets.chomp
@@ -33,8 +34,10 @@ end
 
 #print student list
 def print(names)
-  names.each_with_index do |student, index| 
-    puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)".center(100)
+names.group_by 
+
+  # names.each_with_index do |student, index| 
+  #   puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)".center(100)
     end
 end
 
