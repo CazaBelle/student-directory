@@ -1,30 +1,30 @@
 
 
+# ask user for input
+def input_students
+  puts "Please enter a name of a student"
+  name = gets.chomp
+  puts "Hit return twice to exit"
+  student_arr = []
 
-student_arr = [
-  {"name" => "Dr. Hannibal Lecter", "cohort" => :november},
-  {"name" => "Darth Vader", "cohort" => :november},
-  {"name" => "Nurse Ratched", "cohort" => :november},
-  {"name" => "Michael Corleone", "cohort" => :november},
-  {"name" => "Alex DeLarge", "cohort" => :november},
-  {"name" => "The Wicked Witch of the West", "cohort" => :november},
-  {"name" => "Terminator", "cohort" => :november},
-  {"name" => "Freddy Krueger", "cohort" => :november},
-  {"name" => "The Joker", "cohort" => :november},
-  {"name" => "Joffrey Baratheon", "cohort" => :november},
-  {"name" => "Norman Bates", "cohort" => :november}
-]
-
+  while !name.empty? do
+    student_arr << {name: name, cohort: :november}
+    puts "Now we have #{student_arr.count} students"
+    name = gets.chomp
+  end
+  student_arr
+end
 
 # print header
 def print_header
-  puts "The Students of Villains Academy"
+  puts "The Students of Makers Academy"
   puts "-------------"
 end
 
 #print student list
 def print(names)
-  names.each {|student| puts "#{student["name"]}, (#{student["cohort"]} cohort)" }
+  # Excerise 1 - add number to start of student name
+  names.each_with_index {|student, index| puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)" }
 end
 
 #print footer
@@ -32,6 +32,7 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
+student_arr = input_students
 print_header
 print(student_arr)
 print_footer(student_arr)
