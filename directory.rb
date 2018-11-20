@@ -24,7 +24,8 @@ end
 #print student list
 def print(names)
   # Excerise 1 - add number to start of student name
-  names.each_with_index {|student, index| puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)" }
+  # Exercise 1 - modify program to only print names of students with a certain letter
+  names.each_with_index {|student, index| puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)" if student[:name].downcase. start_with?("a") }
 end
 
 #print footer
