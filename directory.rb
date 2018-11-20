@@ -1,22 +1,28 @@
+#global array that all methods can access
+@student_arr = []
 # ask user for input
 def input_students
   puts "Please enter a name of a student"
   name = gets.chomp
-  puts "Please enter the student's cohort"
-  cohort = gets.chomp
-  puts "Type quit to exit"
-
   while !name.empty? do
-    if name == "quit"
+    puts "Please enter the student's cohort"
+    cohort = gets.chomp
+    if cohort.empty?
+      cohort = "november"
+    end
+    add_student(name, cohort)
+    puts "Now we have #{@student_arr.count} students"
+    name = gets.chomp
+    if name == "quit"|| cohort == "quit"
       break
     end
-    student_arr = []
-    student_arr << {name: name, cohort: cohort}
-    puts "Now we have #{student_arr.count} students"
-    name = gets.chomp
   end
-  student_arr
+  @student_arr
 end
+
+def add_student(name,cohort)
+  @student_arr << {name: name, cohort: cohort.to_sym}
+end 
 
 
 # print header
@@ -28,7 +34,7 @@ end
 #print student list
 def print(names)
   names.each_with_index do |student, index| 
-    puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)."center(100)
+    puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)".center(100)
     end
 end
 
@@ -37,7 +43,7 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students".center(100)
 end
 
-student_arr = input_students
+@student_arr = input_students
 print_header
-print(student_arr)
-print_footer(student_arr)
+print(@student_arr)
+print_footer(@student_arr)
