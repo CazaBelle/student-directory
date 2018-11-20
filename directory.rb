@@ -1,19 +1,23 @@
-
-
 # ask user for input
 def input_students
   puts "Please enter a name of a student"
   name = gets.chomp
-  puts "Hit return twice to exit"
-  student_arr = []
+  puts "Please enter the student's cohort"
+  cohort = gets.chomp
+  puts "Type quit to exit"
 
   while !name.empty? do
-    student_arr << {name: name, cohort: :november }
+    if name == "quit"
+      break
+    end
+    student_arr = []
+    student_arr << {name: name, cohort: cohort}
     puts "Now we have #{student_arr.count} students"
     name = gets.chomp
   end
   student_arr
 end
+
 
 # print header
 def print_header
@@ -23,7 +27,9 @@ end
 
 #print student list
 def print(names)
-  names.each_with_index {|student, index| puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort).center(100)".center(100) }
+  names.each_with_index do |student, index| 
+    puts "#{index + 1}. #{student[:name]}, (#{student[:cohort]} cohort)."center(100)
+    end
 end
 
 #print footer
