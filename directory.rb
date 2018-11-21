@@ -11,7 +11,7 @@ def input_students
       cohort = "november"
     end
 
-    add_student(name, cohort)
+    add_student(name, cohort) 
     puts "Now we have #{@student_arr.count} students"
     name = gets.chomp #.tr() is the alternative to .chomp
     if name == "quit"|| cohort == "quit"
@@ -21,15 +21,19 @@ def input_students
   @student_arr
 end
 
+# Adds student and cohort to the array
 def add_student(name,cohort)
   @student_arr << {name: name, cohort: cohort.to_sym}
 end 
 
-
 # print header
 def print_header
-  puts "The Students of Makers Academy".center(100)
-  puts "------------------------------".center(100)
+  if @student_arr.length == 0 # won't print list if no names entered
+    input_students
+  elsif @student_arr.length > 0
+    puts "The Students of Makers Academy".center(100)
+    puts "------------------------------".center(100)
+  end
 end
 
 #print student list
@@ -37,7 +41,6 @@ def print(names)
   cohort_group = names.group_by { |student| student[:cohort] }
   cohort_group.each do |cohort, pairs|
     puts "#{cohort.upcase}".center(100)
-    
       pairs.each do |pair|
         puts "#{pair[:name].capitalize}".center(100)
         puts ""
@@ -51,6 +54,8 @@ def print_footer(names)
     puts "Overall, we have #{names.count} great student".center(100)
   elsif names.count > 1
     puts "Overall, we have #{names.count} great students".center(100)
+  else
+    input_students
   end
 end
 
