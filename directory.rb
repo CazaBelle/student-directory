@@ -13,7 +13,7 @@ def input_students
 
     add_student(name, cohort)
     puts "Now we have #{@student_arr.count} students"
-    name = gets.chomp
+    name = gets.chomp #.tr() is the alternative to .chomp
     if name == "quit"|| cohort == "quit"
       break
     end
@@ -47,7 +47,11 @@ end
 
 #print footer
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students".center(100)
+  if names.count == 1
+    puts "Overall, we have #{names.count} great student".center(100)
+  elsif names.count > 1
+    puts "Overall, we have #{names.count} great students".center(100)
+  end
 end
 
 @student_arr = input_students
